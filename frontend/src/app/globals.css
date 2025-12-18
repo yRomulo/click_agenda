@@ -1,0 +1,132 @@
+/**
+ * Estilos globais da aplicação
+ * Tema escuro moderno com cores em cinza
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #0f172a;
+  min-height: 100vh;
+  color: #e2e8f0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: #1e293b;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+  border: 1px solid #334155;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: #475569;
+  color: #f1f5f9;
+}
+
+.btn-primary:hover {
+  background: #64748b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(71, 85, 105, 0.4);
+}
+
+.btn-secondary {
+  background: #334155;
+  color: #cbd5e1;
+  border: 1px solid #475569;
+}
+
+.btn-secondary:hover {
+  background: #475569;
+  border-color: #64748b;
+}
+
+.btn-danger {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.btn-danger:hover {
+  background: #991b1b;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #64748b;
+}
+
+.input::placeholder {
+  color: #64748b;
+}
+
+/* Estiliza o ícone do calendário no input type="date" */
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  filter: invert(0.9);
+}
+
+select.input {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.error {
+  color: #f87171;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.success {
+  color: #4ade80;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
