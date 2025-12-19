@@ -27,32 +27,28 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 
 // Middleware CORS - permite requisições do frontend
-app.use(cors({
+const corsOptions = {
   origin: (origin, callback) => {
+    const allowedOrigins = [
+      process.env.FRONTEND_URL,
+    ];
 
     if (!origin) {
       return callback(null, true);
     }
 
-    if (process.env.NODE_ENV === 'production') {
-      if (origin === process.env.FRONTEND_URL) {
-        return callback(null, true);
-      }
-      return callback(new Error('Not allowed by CORS'));
-    }
-
-    // desenvolvimento
     if (
-      origin.startsWith('http://localhost') ||
-      origin.startsWith('http://127.0.0.1')
+      allowedOrigins.includes(origin) ||
+      origin.endsWith('.vercel.app')
     ) {
-      return callback(null, true);
+      return callback(null, origin); // ⚠️ CRÍTICO
     }
 
     return callback(new Error('Not allowed by CORS'));
   },
-  credentials: true
-}));
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 // Rotas da aplicação
 app.use('/api/auth', authRoutes);
