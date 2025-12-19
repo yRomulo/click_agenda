@@ -49,6 +49,7 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Rotas da aplicação
 app.use('/auth', authRoutes);
@@ -56,8 +57,15 @@ app.use('/appointments', appointmentRoutes);
 app.use('/admin', adminRoutes);
 
 // Rota de health check
-app.get('health', (req, res) => {
-  res.json({ status: 'ok', message: 'Servidor funcionando' });
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    environment: process.env.NODE_ENV || 'undefined',
+    frontendUrl: process.env.FRONTEND_URL || 'NOT_SET',
+    jwtSecretLoaded: !!process.env.JWT_SECRET,
+    origin: req.headers.origin || null,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Middleware de tratamento de erros
