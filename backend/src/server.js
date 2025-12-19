@@ -29,25 +29,40 @@ app.use(express.json());
 // Middleware CORS - permite requisições do frontend
 const corsOptions = {
   origin: (origin, callback) => {
-    // Em produção, aceita a URL configurada ou qualquer subdomínio do Vercel
+
+    // Permite chamadas sem origin (ex: Postman, healthcheck)
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Produção
     if (process.env.NODE_ENV === 'production') {
       const allowedOrigin = process.env.FRONTEND_URL;
-      if (!origin || origin === allowedOrigin || origin.includes('.vercel.app')) {
-        callback(null, true);
-      } else {
-        callback(null, false);
+
+      if (
+        origin === allowedOrigin ||
+        origin.endsWith('.vercel.app')
+      ) {
+        return callback(null, true);
       }
-    } else {
-      // Em desenvolvimento, aceita qualquer localhost
-      if (!origin || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
-        callback(null, true);
-      } else {
-        callback(null, false);
-      }
+
+      return callback(new Error('Not allowed by CORS'));
     }
+
+    // Desenvolvimento
+    if (
+      origin.startsWith('http://localhost:') ||
+      origin.startsWith('http://127.0.0.1:')
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('Not allowed by CORS'));
   },
-  credentials: true
+
+  credentials: true,
 };
+
 app.use(cors(corsOptions));
 
 // Rotas da aplicação
