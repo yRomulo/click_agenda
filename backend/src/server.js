@@ -51,12 +51,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Rotas da aplicação
-app.use('/api/auth', authRoutes);
-app.use('/api/appointments', appointmentRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/auth', authRoutes);
+app.use('/appointments', appointmentRoutes);
+app.use('/admin', adminRoutes);
 
 // Rota de health check
-app.get('/api/health', (req, res) => {
+app.get('health', (req, res) => {
   res.json({ status: 'ok', message: 'Servidor funcionando' });
 });
 
