@@ -63,10 +63,8 @@ async function migrate() {
     }
 
     console.log('Migrações concluídas com sucesso!');
-    process.exit(0);
   } catch (error) {
     console.error('Erro ao executar migrações:', error);
-    process.exit(1);
   }
 }
 
