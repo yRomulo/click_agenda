@@ -68,6 +68,15 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/db-test', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT 1');
+    res.json({ db: 'ok', result });
+  } catch (err) {
+    res.status(500).json({ db: 'error', error: err.message });
+  }
+});
+
 // Middleware de tratamento de erros
 app.use((err, req, res, next) => {
   console.error('Erro não tratado:', err);
