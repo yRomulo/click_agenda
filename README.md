@@ -2,6 +2,36 @@
 
 Sistema de agendamento de horários com autenticação JWT, roles de usuário e admin, e relatórios mensais.
 
+## Tecnologias
+
+- **Backend:** Node.js, Express, SQLite, JWT, bcrypt
+- **Frontend:** Next.js 14, React, TypeScript
+- **Autenticação:** JWT com middleware de verificação
+- **Banco de Dados:** SQLite (pode ser migrado para PostgreSQL)
+
+## Funcionalidades
+
+### Usuário Comum
+- Login e registro (apenas role 'user')
+- Visualizar horários disponíveis
+- Criar agendamentos
+- Cancelar próprios agendamentos
+- Ver lista de seus agendamentos
+
+### Administrador
+- Visualizar todos os agendamentos
+- Filtrar por data ou mês
+- Gerar relatórios mensais com estatísticas
+- Ver todos os usuários do sistema
+
+## Segurança
+
+- Senhas são hasheadas com bcrypt
+- Validação de email no backend
+- Middleware de autenticação em todas as rotas protegidas
+- Verificação de role para rotas de admin
+- Validação de dados no backend (não confia no frontend)
+
 ## Estrutura do Projeto
 
 ```
@@ -22,21 +52,6 @@ clickAgenda/
 │   └── package.json
 └── README.md
 ```
-
-## Funcionalidades
-
-### Usuário Comum
-- Login e registro (apenas role 'user')
-- Visualizar horários disponíveis
-- Criar agendamentos
-- Cancelar próprios agendamentos
-- Ver lista de seus agendamentos
-
-### Administrador
-- Visualizar todos os agendamentos
-- Filtrar por data ou mês
-- Gerar relatórios mensais com estatísticas
-- Ver todos os usuários do sistema
 
 ## Instalação
 
@@ -69,29 +84,3 @@ Terminal 2 (Frontend):
 ```bash
 npm run dev:frontend
 ```
-
-## Credenciais Padrão
-
-**Admin:**
-- Email: `admin@clickagenda.com`
-- Senha: `admin123`
-
-**Importante:** Altere a senha do admin em produção!
-
-## Tecnologias
-
-- **Backend:** Node.js, Express, SQLite, JWT, bcrypt
-- **Frontend:** Next.js 14, React, TypeScript
-- **Autenticação:** JWT com middleware de verificação
-- **Banco de Dados:** SQLite (pode ser migrado para PostgreSQL)
-
-## Segurança
-
-- Senhas são hasheadas com bcrypt
-- Validação de email no backend
-- Middleware de autenticação em todas as rotas protegidas
-- Verificação de role para rotas de admin
-- Validação de dados no backend (não confia no frontend)
-
-# clickAgenda
-# click_agenda
